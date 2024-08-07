@@ -1,0 +1,688 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400..800&display=swap");
+
+/* ====================
+  Reset Default CSS Start
+  ==================== */
+
+:root {
+  --primary-font: "Baloo Da 2", sans-serif;
+  --white: #ffffff;
+  --text-color: #192045;
+  --text-color2: #af2222;
+  --primary-color: #ffd4d4;
+  --stroke: #ffb7b7;
+  --hover-color: #fdeaea;
+  --gray: #b8b8b8;
+  --background: #ffd4d4;
+  --background2: #ffb7b7;
+  --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 17%);
+  --dark-mode-bg: #292731;
+  --dark-mode-text: #c0c5cb;
+  --content-and-hover-bg: #414141;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--primary-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--primary-font);
+  margin-top: 0;
+}
+
+p {
+  font-family: var(--primary-font);
+}
+
+span {
+  font-family: var(--primary-font);
+}
+
+a {
+  text-decoration: none !important;
+  font-family: var(--primary-font);
+}
+
+ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+  font-family: var(--primary-font);
+}
+
+button {
+  border: none;
+  outline: none;
+  font-family: var(--primary-font);
+}
+
+input {
+  outline: none;
+  font-family: var(--primary-font);
+}
+
+label {
+  font-family: var(--primary-font);
+}
+
+/*====================
+Reset Default CSS End
+====================*/
+
+/* Finance - Pop Up Modal Start */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: none !important;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.modal-content .close-btn i {
+  font-size: 30px;
+  color: var(--text-color2);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.modal-content .close-btn i:hover {
+  background: rgba(119, 119, 119, 0.253);
+}
+
+#signup .modal-title h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--text-color2);
+  font-family: var(--primary-font);
+  margin-bottom: 20px;
+}
+
+#signup {
+  width: 100%;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 30px 30px 20px 30px;
+  font-family: var(--primary-font);
+}
+
+#signup label {
+  width: 100%;
+  font-family: var(--primary-font);
+  margin-bottom: 20px;
+}
+
+#signup .input-header {
+  width: 100%;
+  font-family: var(--primary-font);
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#signup .radioOrCheckboxes h1 {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--primary-font);
+  color: var(--text-color);
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+#signup .radioOrCheckboxes .gender {
+  display: flex;
+  align-items: center;
+}
+
+#signup .radioOrCheckboxes .gender label {
+  width: 130px;
+  display: flex;
+  align-items: center;
+}
+
+#signup .radioOrCheckboxes .gender label span {
+  padding-left: 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#signup .radioOrCheckboxes input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--text-color);
+  mix-blend-mode: multiply;
+  border-radius: 10px !important;
+  padding-top: 10px !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#signup input {
+  transition: 0.4s;
+}
+
+#signup input:focus {
+  border-color: var(--text-color2) !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+#signup textarea:focus {
+  border-color: var(--text-color2) !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+#signup select:focus {
+  border-color: var(--text-color2) !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+#signup .radioOrCheckboxes .skills {
+  display: flex;
+}
+
+#signup .radioOrCheckboxes .skills label {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  font-family: var(--primary-font);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+#signup .radioOrCheckboxes .skills label input {
+  margin-right: 10px;
+}
+
+#signup .data input {
+  width: 100%;
+  font-size: 16px;
+  font-weight: normal;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: var(--primary-font);
+}
+
+#signup .data textarea {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: var(--primary-font);
+  outline: none;
+  transition: 0.4s !important;
+}
+
+#signup .textarea {
+  margin-top: 20px;
+}
+
+.upload-profile .item {
+  display: flex !important;
+  gap: 10px;
+}
+.upload-profile .item .img-box {
+  width: 84px;
+  height: 70px;
+  border-radius: 6px;
+  background: #dadada;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.profile-wrapper {
+  width: 100%;
+}
+.profile-wrapper p {
+  margin: -16px 0px 0px 0px;
+  font-size: 14px;
+  color: #aaaaaa;
+}
+.custom-file-input-wrapper {
+  font-family: var(--primary-font);
+  position: relative;
+  width: 100%;
+  height: 46px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #666;
+  background: #cdcdcd;
+  cursor: pointer;
+}
+
+.custom-file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.custom-file-input-wrapper input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -2;
+  cursor: pointer;
+}
+.custom-file-input-wrapper::before {
+  content: "";
+  position: absolute;
+  margin: 0px 105px 0px auto; /* Adjust the position of the icon */
+  width: 20px; /* Adjust the width of the icon */
+  height: 20px; /* Adjust the height of the icon */
+  background-image: url("../icons/upload-photo-icon.svg"); /* Replace with your icon path */
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-file-input-wrapper::after {
+  content: "Upload Photo";
+  margin-right: -20px !important;
+  /* Your existing styles for text */
+}
+
+.upload-profile .submit {
+  display: inline-block;
+  width: 100%;
+  border-radius: 4px;
+  background: var(--text-color2);
+  color: var(--white);
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#signup .country select {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: var(--primary-font);
+  outline: none;
+  transition: 0.4s;
+}
+
+.datepicker-wrapper h1 {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--primary-font);
+  color: var(--text-color);
+  margin: 0;
+  padding-bottom: 4px;
+}
+
+.datepicker-container {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #aaaaaa;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+#datepicker {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+/* Dethpicker Start */
+
+.datepicker-wrapper .controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+}
+
+.datepicker-wrapper .controls:focus {
+  border-color: #af2222 !important;
+}
+
+.datepicker-wrapper .controls .calander {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  z-index: 9999999999;
+  right: 10px;
+}
+
+.datepicker-wrapper {
+  margin-bottom: 20px;
+}
+
+.datepicker-wrapper .controls {
+  border: none;
+  position: relative;
+}
+
+.datepicker-wrapper .controls input {
+  display: block;
+  width: 100% !important;
+}
+
+.datepicker-wrapper .calander-icon {
+  position: absolute;
+  right: 10px;
+  width: 30px !important;
+  margin: 0px !important;
+  z-index: 9999999999999999999 !important;
+}
+
+.datepicker-wrapper .controls img {
+  width: 25px;
+  height: 25px;
+}
+
+.datepicker-wrapper .form-control {
+  border-radius: 8px;
+  padding: 13px 10px;
+}
+
+.datepicker {
+  z-index: 9999999999999;
+  top: 0;
+  left: 0;
+  padding: 4px;
+  border: 1px solid var(--gray);
+  color: var(--text-color);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.dropdown-menu {
+  box-shadow: none;
+  border: 1px solid var(--gray) !important;
+}
+
+.datepicker > div {
+  display: none;
+}
+.datepicker table {
+  width: 100%;
+  margin: 0;
+}
+
+.datepicker th {
+  text-align: center;
+  font-weight: 300;
+
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.datepicker td {
+  border-top: 1px solid #dddddd;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+}
+.datepicker tr:first-child td {
+  border-top: 0;
+}
+.datepicker thead tr:first-child {
+  height: 30px;
+}
+.datepicker td p {
+  border-radius: 50%;
+  height: 27px;
+  line-height: 27px;
+  margin: 3px 0 8px;
+  width: 27px;
+}
+.datepicker th {
+  font-size: 10px;
+}
+
+.datepicker td.day p {
+  margin: 2px 0px !important;
+}
+
+.datepicker td.day:hover p {
+  background: var(--background2) !important;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.datepicker td.day.disabled {
+  color: #eeeeee;
+}
+.datepicker td.old,
+.datepicker td.new {
+  /*   color: #999999; */
+  color: #dddddd;
+  border-top: 0;
+}
+.datepicker td.active p,
+.datepicker td.active:hover p {
+  color: #ffffff;
+  background-color: var(--text-color2) !important;
+}
+.datepicker td.active.blue p,
+.datepicker td.active.blue:hover p {
+  background-color: #007aff;
+}
+.datepicker td.active.green p,
+.datepicker td.active.green:hover p {
+  background-color: #4cd964;
+}
+.datepicker td.active.black p,
+.datepicker td.active.black:hover p {
+  background-color: #4a4a4a;
+}
+.datepicker td.active.red p,
+.datepicker td.active.red:hover p {
+  background-color: #ff3a2d;
+}
+
+.datepicker td.active:hover,
+.datepicker td.active:hover:hover,
+.datepicker td.active:focus,
+.datepicker td.active:hover:focus,
+.datepicker td.active:active,
+.datepicker td.active:hover:active,
+.datepicker td.active.active,
+.datepicker td.active:hover.active,
+.datepicker td.active.disabled,
+.datepicker td.active:hover.disabled,
+.datepicker td.active[disabled],
+.datepicker td.active:hover[disabled] {
+  color: #ffffff;
+}
+.datepicker td.active:active,
+.datepicker td.active:hover:active,
+.datepicker td.active.active,
+.datepicker td.active:hover.active {
+  background-color: #003399 \9;
+}
+
+.datepicker td span {
+  display: block;
+  width: 47px;
+  height: 44px;
+  line-height: 44px;
+  color: var(--text-color);
+  float: left;
+  margin: 2px;
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.datepicker td span:hover {
+  background: var(--background2);
+  color: var(--white);
+}
+.datepicker td span.active {
+  color: var(--white);
+  background-color: var(--text-color2) !important;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  color: var(--white);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datepicker td span.active:hover,
+.datepicker td span.active:focus,
+.datepicker td span.active:active,
+.datepicker td span.active.active,
+.datepicker td span.active.disabled,
+.datepicker td span.active[disabled] {
+  color: #ffffff;
+  background-color: #ff3a2d;
+}
+.datepicker td span.active:active,
+.datepicker td span.active.active {
+  background-color: #003399 \9;
+}
+.datepicker td span.old {
+  color: var(--text-color) !important;
+}
+.datepicker th.switch {
+  font-size: 16px;
+  width: 145px;
+  height: 10px !important;
+  margin: 0px 5px !important;
+}
+
+.datepicker.red th.switch {
+  color: #ff3b30;
+}
+.datepicker th.next,
+.datepicker th.prev {
+  width: 40px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  font-size: 33px;
+  padding: 5px;
+}
+
+.datepicker th.next p,
+.datepicker th.prev p {
+  margin: 0px !important;
+}
+
+.datepicker th.dow {
+  font-weight: 400;
+  padding: 5px 0;
+}
+
+.datepicker thead tr:first-child th {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.datepicker thead tr:first-child th:hover {
+  background: var(--hover-color);
+}
+.input-append.date .add-on i,
+.input-prepend.date .add-on i {
+  display: block;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 0;
+  margin-top: 10px !important;
+}
+.datepicker-months .table-condensed > tbody > tr > td,
+.datepicker-years .table-condensed > tbody > tr > td {
+  width: 210px;
+  margin-top: 10px !important;
+}
+.table-condensed p {
+  padding: 0;
+  line-height: 32px;
+}
+/* Dethpicker End */
+
+@media screen and (max-width: 992px) {
+  #signup {
+    width: 100%;
+    max-width: 90%;
+    margin: auto;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 0px 20px 0px;
+    font-family: var(--primary-font);
+  }
+
+  #signup .radioOrCheckboxes .skills {
+    margin-bottom: 10px;
+  }
+
+  #signup .radioOrCheckboxes .skills label {
+    width: 100%;
+  }
+
+  .profile-wrapper p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #signup .modal-title h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  #signup .close-btn i {
+    font-size: 22px;
+  }
+}
+/* Finance Pop Up Modal End */
