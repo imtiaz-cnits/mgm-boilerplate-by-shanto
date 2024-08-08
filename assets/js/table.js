@@ -1,3 +1,95 @@
+// Table action three dot toggle Start
+document.addEventListener("DOMContentLoaded", function () {
+  let currentOpenMenu = null; // Track the currently open menu
+
+  // Function to close a specific menu
+  function closeMenu(menuWrap) {
+    const toggler = menuWrap.querySelector(".toggler");
+    if (toggler) {
+      toggler.checked = false; // Uncheck the checkbox
+    }
+  }
+
+  // Function to initialize dropdown behavior for a specific menu
+  function initDropdown(menuWrap) {
+    const toggler = menuWrap.querySelector(".toggler");
+    const links = menuWrap.querySelectorAll(".link"); // Select all dropdown links
+
+    // Event listener to detect clicks outside the menu
+    document.addEventListener("click", function (event) {
+      if (!menuWrap.contains(event.target) && currentOpenMenu !== menuWrap) {
+        if (currentOpenMenu) {
+          closeMenu(currentOpenMenu);
+        }
+      }
+    });
+
+    // Prevent closing the menu if the menu itself is clicked
+    menuWrap.addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+
+    // Close menu when clicking on a dropdown link
+    links.forEach((link) => {
+      link.addEventListener("click", function () {
+        closeMenu(menuWrap);
+        currentOpenMenu = null; // Reset the current open menu
+      });
+    });
+
+    // Toggle menu open/close
+    toggler.addEventListener("change", function () {
+      if (toggler.checked) {
+        if (currentOpenMenu && currentOpenMenu !== menuWrap) {
+          closeMenu(currentOpenMenu);
+        }
+        currentOpenMenu = menuWrap;
+      } else {
+        if (currentOpenMenu === menuWrap) {
+          currentOpenMenu = null;
+        }
+      }
+    });
+  }
+
+  // Initialize all dropdowns
+  const allMenus = document.querySelectorAll("#menu-wrap");
+  allMenus.forEach(initDropdown);
+});
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const menuWrap = document.querySelector("#menu-wrap");
+//   const toggler = document.querySelector("#menu-wrap .toggler");
+//   const links = menuWrap.querySelectorAll(".link"); // Select all dropdown links
+
+//   // Function to close menu
+//   function closeMenu() {
+//     toggler.checked = false; // Uncheck the checkbox
+//   }
+
+//   // Event listener to detect clicks outside the menu
+//   document.addEventListener("click", function (event) {
+//     if (!menuWrap.contains(event.target)) {
+//       closeMenu();
+//     }
+//   });
+
+//   // Prevent closing the menu if the menu itself is clicked
+//   menuWrap.addEventListener("click", function (event) {
+//     event.stopPropagation();
+//   });
+
+//   // Close menu when clicking on a dropdown link
+//   links.forEach((link) => {
+//     link.addEventListener("click", function () {
+//       closeMenu();
+//     });
+//   });
+// });
+
+// Table action three dot toggle End
+
 $(document).ready(function () {
   let currentPage = 1; // Current page number
   let rowsPerPage = parseInt($("#entries").val(), 10); // Rows per page
@@ -203,6 +295,9 @@ $(document).ready(function () {
   $("#printBtn").click(function () {
     window.print();
   });
+
+
+
 });
 
 // Dropdown functionality
@@ -294,3 +389,5 @@ function filterTable(startDate, endDate) {
 
   updateTable(); // Optionally call this to refresh table display information
 }
+
+
