@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Table action three dot toggle End
 
-
 // ........................................................................................ //
 
 $(document).ready(function () {
@@ -71,6 +70,8 @@ $(document).ready(function () {
   function updateTable() {
     const searchQuery = $("#searchInput").val().toLowerCase();
     const today = new Date().toISOString().split("T")[0]; // Format YYYY-MM-DD
+
+    // Filter the rows based on search query and date range
     const filteredRows = $("tbody tr").filter(function () {
       const rowDate = $(this).data("date");
       const rowText = $(this).text().toLowerCase();
@@ -97,15 +98,23 @@ $(document).ready(function () {
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
+    // Hide all rows initially
     $("tbody tr").hide();
+
+    // Show only the rows within the current page
     filteredRows.slice(start, end).show();
 
-    $("#display-info").text(
-      `Showing ${start + 1} to ${Math.min(
-        end,
-        totalRows
-      )} of ${totalRows} entries`
-    );
+    // Update the display info based on visible rows
+    if (totalRows > 0) {
+      $("#display-info").text(
+        `Showing ${start + 1} to ${Math.min(
+          end,
+          totalRows
+        )} of ${totalRows} entries`
+      );
+    } else {
+      $("#display-info").text("Showing 0 to 0 of 0 entries");
+    }
 
     updatePagination(); // Update pagination links
   }
@@ -267,7 +276,6 @@ $(document).ready(function () {
   $("#printBtn").click(function () {
     window.print();
   });
-
 });
 
 // Dropdown functionality
@@ -359,8 +367,6 @@ function filterTable(startDate, endDate) {
 
   updateTable(); // Optionally call this to refresh table display information
 }
-
-
 
 // $(document).ready(function () {
 //   let currentPage = 1; // Track the current page number
