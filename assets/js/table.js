@@ -1,4 +1,5 @@
-// Table action three dot toggle Start
+// .............Table action three dot toggle Start................ //
+
 document.addEventListener("DOMContentLoaded", function () {
   let currentOpenMenu = null; // Track the currently open menu
 
@@ -57,170 +58,38 @@ document.addEventListener("DOMContentLoaded", function () {
   allMenus.forEach(initDropdown);
 });
 
-// Table action three dot toggle End
+// .............Table action three dot toggle End................ //
 
-// ........................................................................................ //
+// ..............Table searchbar filter Start.......................//
 
-$(document).ready(function () {
-  let currentPage = 1; // Current page number
-  let rowsPerPage = parseInt($("#entries").val(), 0); // Rows per page
-  let currentFilter = "all"; // Default filter
+const searchInput = document.querySelector("#searchInput");
+searchInput.addEventListener("input", function () {
+  const filter = searchInput.value.toLowerCase();
+  const rows = document.querySelectorAll("#printTable tbody tr");
 
-  // Function to update table based on current filters and pagination
-  function updateTable() {
-    const searchQuery = $("#searchInput").val().toLowerCase();
-    const today = new Date().toISOString().split("T")[0]; // Format YYYY-MM-DD
+  rows.forEach((row) => {
+    const cells = row.querySelectorAll("td");
+    let isMatch = false;
 
-    // Filter the rows based on search query and date range
-    const filteredRows = $("tbody tr").filter(function () {
-      const rowDate = $(this).data("date");
-      const rowText = $(this).text().toLowerCase();
-
-      // Filter by search query
-      if (!rowText.includes(searchQuery)) {
-        return false;
-      }
-
-      // Filter by date range
-      if (currentFilter === "today") {
-        return rowDate === today;
-      } else if (currentFilter === "all") {
-        return true;
-      } else {
-        const filterDays = parseInt(currentFilter, 10);
-        const filterDate = new Date();
-        filterDate.setDate(filterDate.getDate() - filterDays);
-        return new Date(rowDate) >= filterDate;
+    cells.forEach((cell) => {
+      if (cell.textContent.toLowerCase().includes(filter)) {
+        isMatch = true;
       }
     });
 
-    const totalRows = filteredRows.length;
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    // Hide all rows initially
-    $("tbody tr").hide();
-
-    // Show only the rows within the current page
-    filteredRows.slice(start, end).show();
-
-    // Update the display info based on visible rows
-    if (totalRows > 0) {
-      $("#display-info").text(
-        `Showing ${start + 1} to ${Math.min(
-          end,
-          totalRows
-        )} of ${totalRows} entries`
-      );
-    } else {
-      $("#display-info").text("Showing 0 to 0 of 0 entries");
-    }
-
-    updatePagination(); // Update pagination links
-  }
-
-  // Update table when search input changes
-  $("#searchInput").on("input", function () {
-    currentPage = 1;
-    updateTable();
+    row.style.display = isMatch ? "" : "none";
   });
 
-  // Update table when rows per page changes
-  $("#entries").on("change", function () {
-    rowsPerPage = parseInt($(this).val(), 10);
-    currentPage = 1;
-    updateTable();
-  });
-
-  // Update table when filter changes
-  $(".dropdown-menus a").on("click", function (e) {
-    e.preventDefault();
-    currentFilter = $(this).data("filter");
-    currentPage = 1;
-    updateTable();
-  });
-
-  // Update pagination links
-  function updatePagination() {
-    const numRows = parseInt($("#entries").val(), 10);
-    const totalRows = $("tbody tr").length;
-    const totalPages = Math.ceil(totalRows / numRows);
-    const pagesToShow = 3; // Number of pagination links to show
-    let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
-    let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
-
-    // Adjust startPage if not enough pages before it
-    if (endPage - startPage + 1 < pagesToShow) {
-      startPage = Math.max(1, endPage - pagesToShow + 1);
-    }
-
-    let paginationHtml = "";
-
-    if (currentPage > 1) {
-      paginationHtml += `<a href="#" id="page-link-btn" class="page-link">Prev</a>`;
-    }
-
-    // Create page number links
-    for (let i = startPage; i <= endPage; i++) {
-      paginationHtml += `<a href="#" class="page-link ${
-        i === currentPage ? "page-link--current" : ""
-      }">${i}</a>`;
-    }
-
-    if (currentPage < totalPages) {
-      paginationHtml += `<a href="#" id="page-link-btn" class="page-link">Next</a>`;
-    }
-
-    $("#pagination").html(paginationHtml);
-  }
-
-  // Handle page changes
-  function handlePageChange(pageNum) {
-    if (pageNum !== currentPage) {
-      currentPage = pageNum;
-      updateTable();
-    }
-  }
-
-  // Event handler for pagination link clicks
-  $(document).on("click", ".page-link", function (e) {
-    e.preventDefault();
-    let text = $(this).text();
-
-    if (text === "Prev") {
-      handlePageChange(currentPage - 1);
-    } else if (text === "Next") {
-      handlePageChange(currentPage + 1);
-    } else {
-      handlePageChange(parseInt(text, 10));
-    }
-  });
-
-  // Event handler for previous and next buttons
-  $("#prevBtn").on("click", function () {
-    if (currentPage > 1) {
-      handlePageChange(currentPage - 1);
-    }
-  });
-
-  $("#nextBtn").on("click", function () {
-    const numRows = parseInt($("#entries").val(), 10);
-    const totalRows = $("tbody tr").length;
-    const totalPages = Math.ceil(totalRows / numRows);
-
-    if (currentPage < totalPages) {
-      handlePageChange(currentPage + 1);
-    }
-  });
-
-  // Event handler for changing the number of entries per page
-  $("#entries").change(function () {
-    updateTable();
-  });
-
-  // Initial setup of table and pagination
+  // Update table and pagination after filtering
   updateTable();
+  updatePagination();
+});
 
+// ..............Table searchbar filter End.......................//
+
+// .............Table copy,csv,pdf,xlse,print all file Start...............//
+
+$(document).ready(function () {
   // Copy table to clipboard
   $("#copyBtn").click(function () {
     const range = document.createRange();
@@ -277,12 +146,13 @@ $(document).ready(function () {
     window.print();
   });
 });
+// .............Table copy,csv,pdf,xlse,print all file End...............//
 
-// Dropdown functionality
+// ...............Filter Dropdown functionality Start...................//
 document.addEventListener("click", function (event) {
   const dropdownMenu = document.querySelector(".dropdown-menus");
   if (!event.target.closest(".dropdown-custom")) {
-    dropdownMenu.style.display = "none"; // Hide dropdown if clicking outside
+    dropdownMenu.style.display = "none";
   }
 });
 
@@ -291,376 +161,158 @@ document
   .addEventListener("click", function () {
     const dropdownMenu = document.querySelector(".dropdown-menus");
     dropdownMenu.style.display =
-      dropdownMenu.style.display === "block" ? "none" : "block"; // Toggle dropdown visibility
+      dropdownMenu.style.display === "block" ? "none" : "block";
   });
 
-const filterLinks = document.querySelectorAll(".dropdown-menus a");
-filterLinks.forEach((link) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
-    const filter = this.getAttribute("data-filter");
-    applyFilter(filter); // Apply the selected filter
+// ...............Filter Dropdown Daynamic functionality Start...................//
+
+document.addEventListener("DOMContentLoaded", function () {
+  const filterLinks = document.querySelectorAll(".dropdown-menus a");
+  const tableRows = document.querySelectorAll("#printTable tbody tr");
+
+  filterLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      const filterValue = this.getAttribute("data-filter");
+
+      tableRows.forEach((row) => {
+        const rowDate = new Date(row.getAttribute("data-date"));
+        const today = new Date();
+        let shouldShow = true;
+
+        switch (filterValue) {
+          case "all":
+            shouldShow = true;
+            break;
+          case "today":
+            shouldShow = rowDate.toDateString() === today.toDateString();
+            break;
+          case "7":
+            shouldShow = (today - rowDate) / (1000 * 60 * 60 * 24) <= 7;
+            break;
+          case "30":
+            shouldShow = (today - rowDate) / (1000 * 60 * 60 * 24) <= 30;
+            break;
+          case "365":
+            shouldShow = (today - rowDate) / (1000 * 60 * 60 * 24) <= 365;
+            break;
+          default:
+            shouldShow = true;
+        }
+
+        row.style.display = shouldShow ? "" : "none";
+      });
+
+      updateTable(); // Update the table view based on new filter
+      updatePagination(); // Update pagination if needed
+    });
   });
 });
 
-function applyFilter(filter) {
-  const today = new Date();
-  let startDate, endDate;
+// ...............Filter Dropdown functionality End...................//
 
-  switch (filter) {
-    case "today":
-      startDate = endDate = today;
-      break;
-    case "7":
-      startDate = new Date();
-      startDate.setDate(today.getDate() - 7);
-      endDate = today;
-      break;
-    case "30":
-      startDate = new Date();
-      startDate.setDate(today.getDate() - 30);
-      endDate = today;
-      break;
-    case "365":
-      startDate = new Date();
-      startDate.setDate(today.getDate() - 365);
-      endDate = today;
-      break;
-    case "custom":
-      document.getElementById("custom-date-range").classList.remove("d-none"); // Show custom date range input
-      return; // Return early to avoid applying the filter immediately
-    case "all":
-      startDate = null;
-      endDate = null;
-      break;
+// ................ Entries and Pagination Start.....................//
+document.addEventListener("DOMContentLoaded", () => {
+  const table = document.querySelector("#printTable");
+  const entriesSelect = document.querySelector("#entries");
+  const displayInfo = document.querySelector("#display-info");
+  const prevBtn = document.querySelector("#prevBtn");
+  const nextBtn = document.querySelector("#nextBtn");
+  const paginationContainer = document.querySelector("#pagination");
+
+  let currentPage = 1;
+  let entriesPerPage = parseInt(entriesSelect.value);
+  let totalEntries = table.querySelectorAll("tbody tr").length;
+  let totalPages = Math.ceil(totalEntries / entriesPerPage);
+  const pageLinksToShow = 3; // Number of page links to show at once
+
+  function updateTable() {
+    const rows = table.querySelectorAll("tbody tr");
+    rows.forEach((row, index) => {
+      row.style.display =
+        index >= (currentPage - 1) * entriesPerPage &&
+        index < currentPage * entriesPerPage
+          ? ""
+          : "none";
+    });
+
+    displayInfo.textContent = `Showing ${Math.min(
+      entriesPerPage * currentPage,
+      totalEntries
+    )} of ${totalEntries} entries`;
   }
 
-  filterTable(startDate, endDate);
+  function updatePagination() {
+    totalPages = Math.ceil(totalEntries / entriesPerPage);
+    paginationContainer.innerHTML = ""; // Clear existing pagination links
 
-  if (filter !== "custom") {
-    document.querySelector(".dropdown-menus").style.display = "none"; // Hide dropdown after applying filter
-  }
-}
+    const startPage = Math.max(
+      1,
+      currentPage - Math.floor(pageLinksToShow / 2)
+    );
+    const endPage = Math.min(totalPages, startPage + pageLinksToShow - 1);
 
-document
-  .getElementById("apply-date-range")
-  .addEventListener("click", function () {
-    const startDate = new Date(document.getElementById("start-date").value);
-    const endDate = new Date(document.getElementById("end-date").value);
-    filterTable(startDate, endDate);
-    document.getElementById("custom-date-range").classList.add("d-none"); // Hide custom date range input
-    document.querySelector(".dropdown-menus").style.display = "none"; // Hide dropdown
-  });
+    if (totalPages > 1) {
+      if (currentPage > 1) {
+        paginationContainer.innerHTML +=
+          '<button id="prevBtn" class="btn">Prev</button>';
+      }
 
-function filterTable(startDate, endDate) {
-  document.querySelectorAll("tbody tr").forEach((row) => {
-    const rowDate = new Date(row.getAttribute("data-date"));
+      for (let i = startPage; i <= endPage; i++) {
+        paginationContainer.innerHTML += `<a href="#" class="page-link page-link--${i}">${i}</a>`;
+      }
 
-    if (!startDate && !endDate) {
-      row.style.display = "";
-    } else if (rowDate >= startDate && rowDate <= endDate) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
+      if (currentPage < totalPages) {
+        paginationContainer.innerHTML +=
+          '<button id="nextBtn" class="btn">Next</button>';
+      }
     }
+
+    // Add event listeners for new pagination links
+    document.querySelectorAll(".page-link").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentPage = parseInt(e.target.textContent);
+        updateTable();
+        updatePagination();
+      });
+    });
+
+    document.querySelector("#prevBtn")?.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updateTable();
+        updatePagination();
+      }
+    });
+
+    document.querySelector("#nextBtn")?.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updateTable();
+        updatePagination();
+      }
+    });
+
+    // Highlight active page link
+    document.querySelectorAll(".page-link").forEach((link) => {
+      link.classList.toggle(
+        "active",
+        parseInt(link.textContent) === currentPage
+      );
+    });
+  }
+
+  entriesSelect.addEventListener("change", (e) => {
+    entriesPerPage = parseInt(e.target.value);
+    totalEntries = table.querySelectorAll("tbody tr").length;
+    currentPage = 1; // Reset to the first page
+    updateTable();
+    updatePagination();
   });
 
-  updateTable(); // Optionally call this to refresh table display information
-}
-
-// $(document).ready(function () {
-//   let currentPage = 1; // Track the current page number
-//   const pagesToShow = 3; // Number of pagination links to show
-
-//   // Function to update the table based on the current page and entries per page
-//   function updateTable() {
-//     let numRows = parseInt($("#entries").val(), 10); // Number of rows to show per page
-//     let totalRows = $("tbody tr").length; // Total number of rows
-//     let start = (currentPage - 1) * numRows; // Starting index of rows for the current page
-//     let end = start + numRows; // Ending index of rows for the current page
-
-//     $("tbody tr").hide().slice(start, end).show(); // Show only rows for the current page
-//     $("#display-info").text(
-//       `Showing ${start + 1} to ${Math.min(
-//         end,
-//         totalRows
-//       )} of ${totalRows} entries`
-//     );
-
-//     updatePagination(); // Update pagination links
-//   }
-
-//   // Function to update the pagination links
-//   function updatePagination() {
-//     let numRows = parseInt($("#entries").val(), 10);
-//     let totalRows = $("tbody tr").length;
-//     let totalPages = Math.ceil(totalRows / numRows); // Calculate total pages
-
-//     let startPage = Math.max(
-//       1,
-//       currentPage - Math.floor(pagesToShow / 2)
-//     ); // Determine the start page for pagination links
-//     let endPage = Math.min(totalPages, startPage + pagesToShow - 1); // Determine the end page for pagination links
-
-//     // Adjust startPage if not enough pages before it
-//     if (endPage - startPage + 1 < pagesToShow) {
-//       startPage = Math.max(1, endPage - pagesToShow + 1);
-//     }
-
-//     let paginationHtml = "";
-
-//     if (currentPage > 1) {
-//       paginationHtml += `<a href="#" class="page-link">Previous</a>`; // Previous page link
-//     }
-
-//     // Create page number links
-//     for (let i = startPage; i <= endPage; i++) {
-//       paginationHtml += `<a href="#" class="page-link ${
-//         i === currentPage ? "page-link--current" : ""
-//       }">${i}</a>`;
-//     }
-
-//     if (currentPage < totalPages) {
-//       paginationHtml += `<a href="#" class="page-link">Next</a>`; // Next page link
-//     }
-
-//     $("#pagination").html(paginationHtml); // Update the pagination HTML
-//   }
-
-//   // Function to handle page changes
-//   function handlePageChange(pageNum) {
-//     if (pageNum !== currentPage) {
-//       currentPage = pageNum;
-//       updateTable(); // Update table content and pagination
-//     }
-//   }
-
-//   // Event handler for pagination link clicks
-//   $(document).on("click", ".page-link", function (e) {
-//     e.preventDefault();
-//     let text = $(this).text();
-
-//     if (text === "Previous") {
-//       handlePageChange(currentPage - 1); // Go to previous page
-//     } else if (text === "Next") {
-//       handlePageChange(currentPage + 1); // Go to next page
-//     } else {
-//       handlePageChange(parseInt(text, 10)); // Go to a specific page
-//     }
-//   });
-
-//   // Event handlers for previous and next buttons
-//   $("#prevBtn").on("click", function () {
-//     if (currentPage > 1) {
-//       handlePageChange(currentPage - 1); // Go to previous page
-//     }
-//   });
-
-//   $("#nextBtn").on("click", function () {
-//     let numRows = parseInt($("#entries").val(), 10);
-//     let totalRows = $("tbody tr").length;
-//     let totalPages = Math.ceil(totalRows / numRows);
-
-//     if (currentPage < totalPages) {
-//       handlePageChange(currentPage + 1); // Go to next page
-//     }
-//   });
-
-//   // Event handler for changing the number of entries per page
-//   $("#entries").change(function () {
-//     updateTable();
-//   });
-
-//   // Initial setup of table and pagination
-//   updateTable();
-
-//   // Copy table to clipboard
-//   $("#copyBtn").click(function () {
-//     const range = document.createRange();
-//     range.selectNode(document.querySelector("table"));
-//     window.getSelection().removeAllRanges();
-//     window.getSelection().addRange(range);
-//     document.execCommand("copy");
-//     window.getSelection().removeAllRanges();
-//     alert("Table copied to clipboard!");
-//   });
-
-//   // Export table to CSV
-//   $("#csvBtn").click(function () {
-//     let csv = [];
-//     const rows = document.querySelectorAll("table tr");
-
-//     rows.forEach((row) => {
-//       const cols = row.querySelectorAll("td, th");
-//       let rowData = [];
-//       cols.forEach((col) => rowData.push(col.innerText));
-//       csv.push(rowData.join(","));
-//     });
-
-//     const csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
-//     const downloadLink = document.createElement("a");
-//     downloadLink.download = "data.csv";
-//     downloadLink.href = window.URL.createObjectURL(csvFile);
-//     downloadLink.click();
-//   });
-
-//   // Export table to PDF
-//   $("#pdfBtn").click(function () {
-//     const { jsPDF } = window.jspdf;
-//     const doc = new jsPDF();
-
-//     // Add the table content to the PDF
-//     doc.autoTable({
-//       html: "table", // Selects the HTML table
-//       startY: 10, // Position the table 10 units from the top
-//     });
-
-//     // Save the PDF
-//     doc.save("data.pdf");
-//   });
-
-//   // Export table to XLSX
-//   $("#xlsxBtn").click(function () {
-//     const wb = XLSX.utils.table_to_book(document.querySelector("table"));
-//     XLSX.writeFile(wb, "data.xlsx");
-//   });
-
-//   // Print table
-//   $("#printBtn").click(function () {
-//     window.print();
-//   });
-// });
-
-// // Filter dropdown functionality
-// document.addEventListener("click", function (event) {
-//   const dropdownMenu = document.querySelector(".dropdown-menu");
-//   if (!event.target.closest(".dropdown-custom")) {
-//     dropdownMenu.style.display = "none"; // Hide dropdown if clicking outside
-//   }
-// });
-
-// document
-//   .querySelector(".dropdown-button")
-//   .addEventListener("click", function () {
-//     const dropdownMenu = document.querySelector(".dropdown-menu");
-//     dropdownMenu.style.display =
-//       dropdownMenu.style.display === "block" ? "none" : "block"; // Toggle dropdown visibility
-//   });
-
-// const filterLinks = document.querySelectorAll(".dropdown-menu a");
-// filterLinks.forEach((link) => {
-//   link.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     const filter = this.getAttribute("data-filter");
-//     applyFilter(filter); // Apply the selected filter
-//   });
-// });
-
-// function applyFilter(filter) {
-//   const today = new Date();
-//   let startDate, endDate;
-
-//   switch (filter) {
-//     case "today":
-//       startDate = endDate = today;
-//       break;
-//     case "7":
-//       startDate = new Date();
-//       startDate.setDate(today.getDate() - 7);
-//       endDate = today;
-//       break;
-//     case "30":
-//       startDate = new Date();
-//       startDate.setDate(today.getDate() - 30);
-//       endDate = today;
-//       break;
-//     case "365":
-//       startDate = new Date();
-//       startDate.setDate(today.getDate() - 365);
-//       endDate = today;
-//       break;
-//     case "custom":
-//       document
-//         .getElementById("custom-date-range")
-//         .classList.remove("d-none"); // Show custom date range input
-//       return; // Return early to avoid applying the filter immediately
-//     case "all":
-//       startDate = null;
-//       endDate = null;
-//       break;
-//   }
-
-//   filterTable(startDate, endDate);
-
-//   if (filter !== "custom") {
-//     document.querySelector(".dropdown-menu").style.display = "none"; // Hide dropdown after applying filter
-//   }
-// }
-
-// document
-//   .getElementById("apply-date-range")
-//   .addEventListener("click", function () {
-//     const startDate = new Date(
-//       document.getElementById("start-date").value
-//     );
-//     const endDate = new Date(document.getElementById("end-date").value);
-//     filterTable(startDate, endDate);
-//     document.getElementById("custom-date-range").classList.add("d-none"); // Hide custom date range input
-//     document.querySelector(".dropdown-menu").style.display = "none"; // Hide dropdown
-//   });
-
-// function filterTable(startDate, endDate) {
-//   document.querySelectorAll("tbody tr").forEach((row) => {
-//     const rowDate = new Date(row.getAttribute("data-date"));
-
-//     if (!startDate && !endDate) {
-//       row.style.display = "";
-//     } else if (rowDate >= startDate && rowDate <= endDate) {
-//       row.style.display = "";
-//     } else {
-//       row.style.display = "none";
-//     }
-//   });
-
-//   updateTable(); // Optionally call this to refresh table display information
-// }
-
-// // Ensure dropdown menu is hidden when clicking outside of it
-// document.addEventListener("click", function (event) {
-//   const dropdownMenu = document.querySelector(".dropdown-menu");
-//   if (!event.target.closest(".dropdown-custom")) {
-//     dropdownMenu.style.display = "none";
-//   }
-// });
-// </script>
-
-// <>
-// document.addEventListener('DOMContentLoaded', function() {
-// const menuWrap = document.querySelector('#menu-wrap');
-// const toggler = document.querySelector('#menu-wrap .toggler');
-// const links = menuWrap.querySelectorAll('.link'); // Select all dropdown links
-
-// // Function to close menu
-// function closeMenu() {
-// toggler.checked = false; // Uncheck the checkbox
-// }
-
-// // Event listener to detect clicks outside the menu
-// document.addEventListener('click', function(event) {
-// if (!menuWrap.contains(event.target)) {
-// closeMenu();
-// }
-// });
-
-// // Prevent closing the menu if the menu itself is clicked
-// menuWrap.addEventListener('click', function(event) {
-// event.stopPropagation();
-// });
-
-// // Close menu when clicking on a dropdown link
-// links.forEach(link => {
-// link.addEventListener('click', function() {
-// closeMenu();
-// });
-// });
-// });
+  // Initial setup
+  updateTable();
+  updatePagination();
+});
+// ................ Entries and Pagination End.....................//

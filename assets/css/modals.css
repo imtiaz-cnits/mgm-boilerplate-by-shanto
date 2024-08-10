@@ -204,6 +204,7 @@ html ::-webkit-scrollbar-thumb:hover {
   font-size: 18px;
   font-weight: 600;
   border-radius: 8px;
+  margin: 0;
   background: var(--text-color2);
   color: var(--white);
   border: 1px solid var(--text-color2);
@@ -622,11 +623,31 @@ html ::-webkit-scrollbar-thumb:hover {
   gap: 12px;
 }
 
+.page-link.active {
+  font-weight: bold;
+  color: var(--white);
+  background: var(--text-color2);
+  text-decoration: underline; /* Optional */
+}
+
 .data-table .pagination .page-link {
   border-radius: 50% !important;
   width: 38px;
   text-align: center;
   line-height: 30px;
+}
+
+.data-table #prevBtn,
+.data-table #nextBtn {
+  color: var(--text-color2);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0px 10px;
+}
+
+.data-table #prevBtn:hover,
+.data-table #nextBtn:hover {
+  color: var(--white);
 }
 
 .data-table .pagination #page-link-btn {
