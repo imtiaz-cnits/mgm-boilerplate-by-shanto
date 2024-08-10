@@ -149,7 +149,6 @@ html ::-webkit-scrollbar-thumb:hover {
   color: var(--gray);
   border: 1px solid var(--gray);
   border-radius: 8px !important;
-  margin-right: 20px;
 }
 
 .input-group-append .dropdown-button {
@@ -161,6 +160,11 @@ html ::-webkit-scrollbar-thumb:hover {
   border-radius: 8px;
   background: none;
   transition: 0.4s;
+}
+
+.input-group {
+  display: flex;
+  gap: 20px;
 }
 
 .input-group-append .dropdown-button:hover {
@@ -199,9 +203,9 @@ html ::-webkit-scrollbar-thumb:hover {
 
 .data-table #openModalBtn {
   display: block;
-  height: 39px;
+  height: 33px;
   padding: 0px 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
   margin: 0;
@@ -221,6 +225,7 @@ html ::-webkit-scrollbar-thumb:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .data-table .button-item {
@@ -261,10 +266,18 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 
 .data-table .entries-page #entries {
+  position: relative;
   font-size: 18px;
   padding: 4px 20px;
   border-radius: 8px;
   border: 1px solid var(--gray);
+}
+
+.data-table .entries-page #entries::before {
+  content: "&#xf107;";
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .data-table table {
@@ -282,11 +295,6 @@ html ::-webkit-scrollbar-thumb:hover {
 
 .data-table .table thead th {
   background: var(--primary-color);
-}
-
-.data-table .table-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden !important;
 }
 
 .data-table .table thead th:nth-last-child(1) {
@@ -591,11 +599,6 @@ html ::-webkit-scrollbar-thumb:hover {
   transition: 0.1s;
 }
 
-.data-table .icon-buttons i {
-  margin: 0 5px;
-  cursor: pointer;
-}
-
 .data-table .btn {
   height: auto;
   padding: 0px;
@@ -698,7 +701,23 @@ html ::-webkit-scrollbar-thumb:hover {
   margin-bottom: 0px !important;
   color: var(--text-color);
 }
+/* scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  height: 10px;
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
 
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--dark-mode-text);
+  height: 10px;
+  border-radius: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--gray);
+  cursor: pointer;
+}
 /* print.css */
 @media print {
   .navbar-header,
@@ -711,22 +730,51 @@ html ::-webkit-scrollbar-thumb:hover {
   }
 }
 
-@media screen and (max-width: 992px) {
-  .data-table .button-wrapper {
-    display: block;
-    justify-content: center;
+@media screen and (max-width: 1240px) {
+  .data-table .table-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden !important;
   }
+}
 
+@media screen and (max-width: 1150px) {
   .data-table .button-item {
     justify-content: center;
     margin-top: 20px;
   }
+  .input-group {
+    display: block;
+  }
 
+  .data-table input[type="text"] {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .data-table .button-wrapper {
+    display: block;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 992px) {
   .data-table .entries-page {
     justify-content: center;
   }
   .my-3 {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .data-table #openModalBtn {
+    height: 33px;
+    padding: 0px 6px;
+    font-size: 16px;
+  }
+  .icon-buttons svg {
+    width: 28px !important;
+    height: 28px !important;
   }
 }
 

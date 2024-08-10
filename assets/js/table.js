@@ -169,6 +169,20 @@ document
 document.addEventListener("DOMContentLoaded", function () {
   const filterLinks = document.querySelectorAll(".dropdown-menus a");
   const tableRows = document.querySelectorAll("#printTable tbody tr");
+  const displayInfo = document.getElementById("display-info");
+
+  function updateTable() {
+    let visibleCount = 0;
+
+    tableRows.forEach((row) => {
+      if (row.style.display !== "none") {
+        visibleCount++;
+      }
+    });
+
+    // Update the display-info span with the count of visible entries
+    displayInfo.textContent = `Showing ${visibleCount} entries`;
+  }
 
   filterLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
@@ -204,9 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       updateTable(); // Update the table view based on new filter
-      updatePagination(); // Update pagination if needed
     });
   });
+
+  updateTable(); // Initial call to set the correct count on page load
 });
 
 // ...............Filter Dropdown functionality End...................//

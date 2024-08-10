@@ -1263,50 +1263,76 @@
                       class="form-control"
                       placeholder="Searching Invoice..."
                     />
-                    <div class="input-group-append">
-                      <div class="dropdown-custom">
-                        <button class="dropdown-button">
-                          <svg
-                            width="32"
-                            height="32"
-                            viewBox="0 0 39 38"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect
-                              y="1"
-                              width="25"
-                              height="3"
-                              rx="1.5"
-                              fill="#192045"
-                            />
-                            <rect
-                              y="11"
-                              width="25"
-                              height="3"
-                              rx="1.5"
-                              fill="#192045"
-                            />
-                            <rect
-                              y="21"
-                              width="25"
-                              height="3"
-                              rx="1.5"
-                              fill="#192045"
-                            />
-                            <path
-                              d="M32 1C32 0.447715 31.5523 -2.41411e-08 31 0C30.4477 2.41411e-08 30 0.447715 30 1L32 1ZM30.2929 37.7071C30.6834 38.0976 31.3166 38.0976 31.7071 37.7071L38.0711 31.3431C38.4616 30.9526 38.4616 30.3195 38.0711 29.9289C37.6805 29.5384 37.0474 29.5384 36.6569 29.9289L31 35.5858L25.3431 29.9289C24.9526 29.5384 24.3195 29.5384 23.9289 29.9289C23.5384 30.3195 23.5384 30.9526 23.9289 31.3431L30.2929 37.7071ZM30 1L30 37L32 37L32 1L30 1Z"
-                              fill="#192045"
-                            />
-                          </svg>
-                          <span>Filter</span>
-                        </button>
-                        <div class="dropdown-menus">
-                          <a href="#" data-filter="all">All time</a>
-                          <a href="#" data-filter="today">Today</a>
-                          <a href="#" data-filter="7">Last 7 Days</a>
-                          <a href="#" data-filter="30">Last Month</a>
-                          <a href="#" data-filter="365">Last Year</a>
+                    <!-- Entries per page -->
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        justify-content: center;
+                      "
+                    >
+                      <div class="entries-page mb-3">
+                        <label for="entries" class="mr-2">Entries:</label>
+                        <select
+                          id="entries"
+                          class="form-control"
+                          style="width: auto"
+                        >
+                          <option value="5">5</option>
+                          <option value="10">10</option>
+                          <option value="25">25</option>
+                          <option value="50">50</option>
+                          <option value="100">100</option>
+                          #
+                        </select>
+                      </div>
+
+                      <div class="input-group-append">
+                        <div class="dropdown-custom">
+                          <button class="dropdown-button">
+                            <svg
+                              width="32"
+                              height="32"
+                              viewBox="0 0 39 38"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                y="1"
+                                width="25"
+                                height="3"
+                                rx="1.5"
+                                fill="#192045"
+                              />
+                              <rect
+                                y="11"
+                                width="25"
+                                height="3"
+                                rx="1.5"
+                                fill="#192045"
+                              />
+                              <rect
+                                y="21"
+                                width="25"
+                                height="3"
+                                rx="1.5"
+                                fill="#192045"
+                              />
+                              <path
+                                d="M32 1C32 0.447715 31.5523 -2.41411e-08 31 0C30.4477 2.41411e-08 30 0.447715 30 1L32 1ZM30.2929 37.7071C30.6834 38.0976 31.3166 38.0976 31.7071 37.7071L38.0711 31.3431C38.4616 30.9526 38.4616 30.3195 38.0711 29.9289C37.6805 29.5384 37.0474 29.5384 36.6569 29.9289L31 35.5858L25.3431 29.9289C24.9526 29.5384 24.3195 29.5384 23.9289 29.9289C23.5384 30.3195 23.5384 30.9526 23.9289 31.3431L30.2929 37.7071ZM30 1L30 37L32 37L32 1L30 1Z"
+                                fill="#192045"
+                              />
+                            </svg>
+                            <span>Filter</span>
+                          </button>
+                          <div class="dropdown-menus">
+                            <a href="#" data-filter="all">All time</a>
+                            <a href="#" data-filter="today">Today</a>
+                            <a href="#" data-filter="7">Last 7 Days</a>
+                            <a href="#" data-filter="30">Last Month</a>
+                            <a href="#" data-filter="365">Last Year</a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1491,18 +1517,6 @@
                 </div>
               </div>
 
-              <!-- Entries per page -->
-              <div class="entries-page mb-3">
-                <label for="entries" class="mr-2">Entries:</label>
-                <select id="entries" class="form-control" style="width: auto">
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
-              </div>
-
               <!-- Table -->
               <div class="table-wrapper">
                 <table id="printTable" class="table table-bordered table-hover">
@@ -1519,49 +1533,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-row="1" data-date="2024-08-10">
-                      <td>121</td>
-                      <td>INV#01</td>
-                      <td>VRISTA: UI/UX Design</td>
-                      <td>
-                        <div class="client-item">
-                          <div class="image">
-                            <img
-                              src="./assets/img/table-client-img.png"
-                              alt="client"
-                              class="rounded-circle mr-2"
-                              width="30"
-                            />
-                          </div>
-                          <span>Thomas Lee</span>
-                        </div>
-                      </td>
-                      <td>
-                        <h4>Total: $800.00</h4>
-                        <h4>Paid: $800.00</h4>
-                        <h4>Unpaid: $0.00</h4>
-                      </td>
-                      <td>10, Aug 2024</td>
-                      <td><span class="badge badge-success">Paid</span></td>
-                      <td>
-                        <div id="action_btn">
-                          <div id="menu-wrap">
-                            <input type="checkbox" class="toggler" />
-                            <div class="dots">
-                              <div></div>
-                            </div>
-                            <div class="menu">
-                              <div>
-                                <ul>
-                                  <li><a href="#" class="link">Edit</a></li>
-                                  <li><a href="#" class="link">Delete</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
                     <tr data-row="1" data-date="2024-08-05">
                       <td>121</td>
                       <td>INV#01</td>
@@ -1737,6 +1708,49 @@
                                   <li>
                                     <a href="#" class="link">Delete</a>
                                   </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr data-row="1" data-date="2024-08-10">
+                      <td>121</td>
+                      <td>INV#01</td>
+                      <td>VRISTA: UI/UX Design</td>
+                      <td>
+                        <div class="client-item">
+                          <div class="image">
+                            <img
+                              src="./assets/img/table-client-img.png"
+                              alt="client"
+                              class="rounded-circle mr-2"
+                              width="30"
+                            />
+                          </div>
+                          <span>Thomas Lee</span>
+                        </div>
+                      </td>
+                      <td>
+                        <h4>Total: $800.00</h4>
+                        <h4>Paid: $800.00</h4>
+                        <h4>Unpaid: $0.00</h4>
+                      </td>
+                      <td>10, Aug 2024</td>
+                      <td><span class="badge badge-success">Paid</span></td>
+                      <td>
+                        <div id="action_btn">
+                          <div id="menu-wrap">
+                            <input type="checkbox" class="toggler" />
+                            <div class="dots">
+                              <div></div>
+                            </div>
+                            <div class="menu">
+                              <div>
+                                <ul>
+                                  <li><a href="#" class="link">Edit</a></li>
+                                  <li><a href="#" class="link">Delete</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -2513,6 +2527,6 @@
       src="./assets/js/bootstrap-datepicker.js"
       type="text/javascript"
     ></script>
-    <script src="./assets/js/detepicker.js" type="text/javascript"></script>
+    <script src="./assets/js/datepicker.js" type="text/javascript"></script>
   </body>
 </html>
