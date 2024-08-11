@@ -1497,11 +1497,97 @@ body[data-layout-mode="dark"] .right-bar {
   color: var(--white) !important;
 }
 
-/*-- Cards Start --*/
+/*-- Cards table Start --*/
 
 body[data-layout-mode="dark"] #cards .card-body {
   background: var(--dark-mode-bg);
   box-shadow: var(--box-shadow) !important;
+}
+
+body[data-layout-mode="dark"] .data-table .table td {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .table-hover > tbody > tr:hover {
+  background: rgba(43, 43, 43, 0) !important;
+}
+
+body[data-layout-mode="dark"] .page-link.active {
+  color: var(--white) !important;
+  background: var(--text-color2) !important;
+}
+
+body[data-layout-mode="dark"] .data-table .table td h4:nth-child(1) {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .data-table .entries-page label {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .input-group-append .dropdown-button {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .input-group-append .dropdown-button:hover {
+  color: var(--text-color) !important;
+}
+
+body[data-layout-mode="dark"] .input-group-append .dropdown-button svg rect {
+  fill: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .input-group-append .dropdown-button svg path {
+  fill: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"]
+  .input-group-append
+  .dropdown-button:hover
+  svg
+  rect {
+  fill: var(--text-color) !important;
+}
+
+body[data-layout-mode="dark"]
+  .input-group-append
+  .dropdown-button:hover
+  svg
+  path {
+  fill: var(--text-color) !important;
+}
+
+body[data-layout-mode="dark"] #action_btn #menu-wrap .toggler + .dots > div,
+body[data-layout-mode="dark"]
+  #action_btn
+  #menu-wrap
+  .toggler
+  + .dots
+  > div:after,
+body[data-layout-mode="dark"]
+  #action_btn
+  #menu-wrap
+  .toggler
+  + .dots
+  > div:before {
+  background-color: var(--white) !important;
+}
+
+body[data-layout-mode="dark"] .data-table .button-item button {
+  background: var(--white);
+}
+
+body[data-layout-mode="dark"] .data-table .button-item button:hover {
+  background: var(--text-color2);
+}
+
+body[data-layout-mode="dark"] .data-table #openModalBtn:hover {
+  background: var(--dark-mode-bg);
+  color: var(--white);
+}
+
+body[data-layout-mode="dark"] .data-table #display-info {
+  color: var(--dark-mode-text);
 }
 
 body[data-layout-mode="dark"] #cards .card-body h4 {
@@ -1514,6 +1600,65 @@ body[data-layout-mode="dark"] .bredcam-invoice {
 
 body[data-layout-mode="dark"] .copyright p {
   color: var(--white) !important;
+}
+
+/* finance details start */
+
+body[data-layout-mode="dark"] #invoice-details {
+  background: var(--dark-mode-bg) !important;
+}
+
+body[data-layout-mode="dark"] .bredcam a {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] #invoice-details .brand-address p,
+body[data-layout-mode="dark"] #invoice-details .brand-address h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .invoice-address p {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .address .item h2,
+body[data-layout-mode="dark"] .address .item p {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .title span {
+  color: var(--text-color2) !important;
+}
+
+body[data-layout-mode="dark"] #invoice-details .invoice-address h1 span,
+body[data-layout-mode="dark"] #invoice-details .invoice-address h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] tbody td {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .invoice-details-table thead:hover {
+  color: var(--dark-mode-text) !important;
+  background-color: var(--background2);
+}
+
+body[data-layout-mode="dark"] .invoice-details-table tbody tr td h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] .terms-condition p {
+  color: var(--dark-mode-text) !important;
+}
+
+body[data-layout-mode="dark"] #invoice-details .invoice-details-button .cancel {
+  color: var(--dark-mode-text) !important;
+  border-color: var(--white);
+}
+
+body[data-layout-mode="dark"] .condition h1 {
+  color: var(--dark-mode-text) !important;
 }
 
 /*..........................Rightbar SETTING Dark Mode All Color END ...............................................*/
@@ -1792,23 +1937,149 @@ body[light-mode="dark"] .right-bar {
   color: var(--white) !important;
 }
 
-/*-- Cards Start --*/
+/*-- Cards table Start --*/
 
-body[light-mode="dark"] #cards .card-body {
-  background: var(--dark-mode-bg);
+body[light-mode="dark"] .data-table .card-body {
+  background: var(--dark-mode-bg) !important;
   box-shadow: var(--box-shadow) !important;
 }
 
-body[light-mode="dark"] #cards .card-body h4 {
+body[light-mode="dark"] .data-table .table td {
+  color: var(--dark-mode-text) !important;
+}
+body[light-mode="dark"] tbody,
+td,
+th,
+thead,
+tr {
+  border-color: rgba(175, 175, 175, 0.151) !important;
+}
+
+body[light-mode="dark"] table tr:hover {
+  background: rgba(175, 175, 175, 0.151) !important;
+}
+
+body[light-mode="dark"] .table-hover > tbody > tr:hover > * {
+  background: rgba(43, 43, 43, 0) !important;
+}
+
+body[light-mode="dark"] .page-link {
+  color: var(--white) !important;
+  background: none !important;
+}
+
+body[light-mode="dark"] .page-link.active {
+  color: var(--white) !important;
+  background: var(--text-color2) !important;
+}
+
+body[light-mode="dark"] .data-table .table td h4:nth-child(1) {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .data-table .entries-page label {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button:hover {
+  color: var(--text-color) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button svg rect {
+  fill: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button svg path {
+  fill: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button:hover svg rect {
+  fill: var(--text-color) !important;
+}
+
+body[light-mode="dark"] .input-group-append .dropdown-button:hover svg path {
+  fill: var(--text-color) !important;
+}
+
+body[light-mode="dark"] #action_btn #menu-wrap .toggler + .dots > div,
+body[light-mode="dark"] #action_btn #menu-wrap .toggler + .dots > div:after,
+body[light-mode="dark"] #action_btn #menu-wrap .toggler + .dots > div:before {
+  background-color: var(--white) !important;
+}
+
+body[light-mode="dark"] .data-table .button-item button {
+  background: var(--white);
+}
+
+body[light-mode="dark"] .data-table .button-item button:hover {
+  background: var(--text-color2);
+}
+
+body[light-mode="dark"] .data-table #openModalBtn:hover {
+  background: var(--dark-mode-bg);
   color: var(--white);
 }
 
-body[light-mode="dark"] .bredcam-invoice {
-  color: var(--gray);
+body[light-mode="dark"] .data-table #display-info {
+  color: var(--dark-mode-text);
 }
 
-body[light-mode="dark"] .copyright p {
-  color: var(--white) !important;
+/* finance details start */
+
+body[light-mode="dark"] #invoice-details {
+  background: var(--dark-mode-bg) !important;
+}
+
+body[light-mode="dark"] .bredcam a {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] #invoice-details .brand-address p,
+body[light-mode="dark"] #invoice-details .brand-address h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .invoice-address p {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .title span {
+  color: var(--text-color2) !important;
+}
+
+body[light-mode="dark"] #invoice-details .invoice-address h1 span,
+body[light-mode="dark"] #invoice-details .invoice-address h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] tbody td {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .invoice-details-table thead:hover {
+  color: var(--dark-mode-text) !important;
+  background-color: var(--background2);
+}
+
+body[light-mode="dark"] .invoice-details-table tbody tr td h1 {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] .terms-condition p {
+  color: var(--dark-mode-text) !important;
+}
+
+body[light-mode="dark"] #invoice-details .invoice-details-button .cancel {
+  color: var(--dark-mode-text) !important;
+  border-color: var(--white);
+}
+
+body[light-mode="dark"] .condition h1 {
+  color: var(--dark-mode-text) !important;
 }
 
 /*  Toggle button Dark Mode End */

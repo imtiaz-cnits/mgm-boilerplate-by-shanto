@@ -146,7 +146,7 @@ html ::-webkit-scrollbar-thumb:hover {
 
 .data-table input[type="text"] {
   font-size: 16px;
-  color: var(--gray);
+  color: var(--text-color);
   border: 1px solid var(--gray);
   border-radius: 8px !important;
 }
@@ -265,6 +265,25 @@ html ::-webkit-scrollbar-thumb:hover {
   font-size: 18px;
 }
 
+.data-table .select-container {
+  position: relative;
+  display: inline-block;
+}
+
+.data-table #entries {
+  padding-right: 30px;
+}
+
+.data-table .dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 22px;
+  color: #333;
+}
+
 .data-table .entries-page #entries {
   position: relative;
   font-size: 18px;
@@ -318,9 +337,6 @@ html ::-webkit-scrollbar-thumb:hover {
   white-space: nowrap;
 }
 
-.data-table .table tbody tr:hover {
-  background-color: #e70202;
-}
 .data-table .table td .client-item {
   display: flex;
   align-items: center;
@@ -358,6 +374,10 @@ html ::-webkit-scrollbar-thumb:hover {
 .data-table .table td h4:nth-child(3) {
   color: var(--text-color2);
   font-weight: 600;
+}
+
+.table-hover > tbody > tr:hover {
+  background: var(--hover-color) !important;
 }
 
 .data-table .table td h4 {

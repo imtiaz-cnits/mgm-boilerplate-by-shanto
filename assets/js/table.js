@@ -151,7 +151,13 @@ $(document).ready(function () {
 // ...............Filter Dropdown functionality Start...................//
 document.addEventListener("click", function (event) {
   const dropdownMenu = document.querySelector(".dropdown-menus");
-  if (!event.target.closest(".dropdown-custom")) {
+  const dropdownButton = document.querySelector(".dropdown-button");
+
+  // Check if the click is outside the dropdown menu and button
+  if (
+    !event.target.closest(".dropdown-custom") &&
+    !event.target.closest(".dropdown-button")
+  ) {
     dropdownMenu.style.display = "none";
   }
 });
@@ -163,6 +169,14 @@ document
     dropdownMenu.style.display =
       dropdownMenu.style.display === "block" ? "none" : "block";
   });
+
+// Add click event listeners to each dropdown link to close the menu
+document.querySelectorAll(".dropdown-menus a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    const dropdownMenu = document.querySelector(".dropdown-menus");
+    dropdownMenu.style.display = "none";
+  });
+});
 
 // ...............Filter Dropdown Daynamic functionality Start...................//
 
@@ -239,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let entriesPerPage = parseInt(entriesSelect.value);
   let totalEntries = table.querySelectorAll("tbody tr").length;
   let totalPages = Math.ceil(totalEntries / entriesPerPage);
-  const pageLinksToShow = 3; // Number of page links to show at once
+  const pageLinksToShow = 3;
 
   function updateTable() {
     const rows = table.querySelectorAll("tbody tr");
@@ -259,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updatePagination() {
     totalPages = Math.ceil(totalEntries / entriesPerPage);
-    paginationContainer.innerHTML = ""; // Clear existing pagination links
+    paginationContainer.innerHTML = "";
 
     const startPage = Math.max(
       1,

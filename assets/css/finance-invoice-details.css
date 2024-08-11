@@ -171,7 +171,7 @@ html ::-webkit-scrollbar-thumb:hover {
 #invoice-details .invoice-address p,
 #invoice-details .invoice-address h1 {
   font-family: var(--primary-font);
-  font-size: 14px;
+  font-size: 18px !important;
   color: var(--text-color);
   font-weight: normal;
 }
@@ -494,26 +494,5 @@ html ::-webkit-scrollbar-thumb:hover {
     font-size: 18px;
   }
 }
-
-/* @media screen and (max-width: 515px) {
-
-    #invoice-details .contact .brand-address:nth-child(2) {
-        margin-top: -20px;
-      }
-}
-
-@media screen and (max-width:406px) {
-
-    #invoice-details .contact .brand-address:nth-child(2) {
-        margin-top: -30px;
-      }
-}
-
-@media screen and (max-width:377px) {
-
-    #invoice-details .contact .brand-address:nth-child(2) {
-        margin-top: -63px;
-        
-      } */
 
 /* Finance Invoice Details End */
