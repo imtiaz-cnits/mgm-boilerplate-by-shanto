@@ -686,3 +686,49 @@ input::-webkit-inner-spin-button {
   }
 }
 /* Finance Pop Up Modal End */
+
+/* Action Button Modal Start */
+.custom-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Fallback color with opacity */
+  opacity: 0;
+  transition: opacity 0.4s ease; /* Transition for fade-in/fade-out */
+}
+
+.custom-modal.show {
+  opacity: 1; /* Fully visible */
+}
+
+.custom-modal.hide {
+  opacity: 0; /* Fully hidden */
+}
+
+.custom-modal-content {
+  margin: 15% auto; /* Center the modal content */
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  width: 80%;
+}
+.custom-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.custom-close:hover,
+.custom-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Action Button Modal End */

@@ -510,6 +510,7 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 
 #action_btn #menu-wrap .menu ul li .link {
+  display: block;
   text-decoration: none;
   color: var(--text-color);
   opacity: 0;
