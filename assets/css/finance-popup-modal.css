@@ -687,16 +687,18 @@ input::-webkit-inner-spin-button {
 }
 /* Finance Pop Up Modal End */
 
+
+
 /* Action Button Modal Start */
 .custom-modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed; /* Stay in place */
   z-index: 9999; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  background-color: rgba(0, 0, 0, 0.5); /* Fallback color with opacity */
+  background-color: rgba(0, 0, 0, 0.5); 
   opacity: 0;
   transition: opacity 0.4s ease; /* Transition for fade-in/fade-out */
 }
@@ -732,3 +734,29 @@ input::-webkit-inner-spin-button {
 
 
 /* Action Button Modal End */
+#custom-modal-1 .heading,
+#custom-modal-2 .heading {
+  text-align: center;
+  font-size: 24px;
+  color: black;
+ font-weight: bold;
+}
+
+
+#custom-modal-1 input[type=text],
+#custom-modal-2 input[type=text]{
+  width:100%;
+  border:2px solid #aaa;
+  border-radius:4px;
+  margin:8px 0;
+  outline:none;
+  padding:8px;
+  box-sizing:border-box;
+  transition:.3s;
+}
+
+#custom-modal-1 input[type=text]:focus,
+#custom-modal-2 input[type=text]:focus{
+  border-color:dodgerBlue;
+  box-shadow:0 0 8px 0 dodgerBlue;
+}
